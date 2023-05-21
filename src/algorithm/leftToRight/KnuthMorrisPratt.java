@@ -3,42 +3,46 @@ package algorithm.leftToRight;
 public class KnuthMorrisPratt {
 
     // hàm tiền xử lý
-    static int[] preKMP(char[] x) {
+    public static int[] preKMP(char[] x) {
         int[] kmpNext = new int[x.length + 1];
-        int i = 0, j = -1;
-        kmpNext[0] = -1;
-        while (i < x.length - 1) {
-            while (j > -1 && x[i] != x[j]) {
-                j = kmpNext[j];
-            }
-            i++;
-            j++;
-            if (x[i] == x[j]) {
-                kmpNext[i] = kmpNext[j];
-            } else {
-                kmpNext[i] = j;
+        int i = 1, len = 0;
+        kmpNext[0] = 0; //kmpNext[0] luôn là 0
+        while (i < x.length) {
+            if (x[i] == x[len]) { //Nếu X[i] = X[len]
+                len++;
+                kmpNext[i] = len;
+                i++;
+            } else { // Nếu X[i] != X[len]
+                if (len != 0) {
+                    len = kmpNext[len - 1];
+                } else {
+                    kmpNext[i] = 0;
+                    i++;
+                }
             }
         }
         return kmpNext;
     }
 
-    static void search(char[] x, char[] y) {
+    public static void search(char[] x, char[] y) {
         int[] kmpNext = preKMP(x);
         int i = 0, j = 0;
-        while (j < y.length) {
-            while (i > -1 && x[i] != y[j]) {
-                i = kmpNext[i];
+        while (i < y.length) {
+            if (x[j] == y[i]) {
+                i++;
+                j++;
             }
-            i++;
-            j++;
-            if (i >= x.length) {
-                System.out.print(j - i + " ");
-                i = kmpNext[i];
+            if (j == x.length) {
+                System.out.print(i - j + " ");
+                j = kmpNext[j - 1];
+            } else if (i < y.length && x[j] != y[i]) {
+                if (j != 0) j = kmpNext[j - 1];
+                else i = i + 1;
             }
         }
     }
 
     public static void main(String[] args) {
-        search("AAEABE".toCharArray(), "AAEAAEABEAAEABE".toCharArray());
+        search("AAEBAAE".toCharArray(), "EBAAEBAAEBAAEA".toCharArray());
     }
 }
