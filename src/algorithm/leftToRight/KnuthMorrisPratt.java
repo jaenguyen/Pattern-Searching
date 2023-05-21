@@ -39,6 +39,6 @@ public class KnuthMorrisPratt {
     }
 
     public static void main(String[] args) {
-        search("JAE".toCharArray(), "JAEXJAE".toCharArray());
+        search("AAEABE".toCharArray(), "AAEAAEABEAAEABE".toCharArray());
     }
 }
