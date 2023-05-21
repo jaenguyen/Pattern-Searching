@@ -2,6 +2,7 @@ package algorithm.leftToRight;
 
 public class KnuthMorrisPratt {
 
+    // hàm tiền xử lý
     static int[] preKMP(char[] x) {
         int[] kmpNext = new int[x.length + 1];
         int i = 0, j = -1;
@@ -38,6 +39,6 @@ public class KnuthMorrisPratt {
     }
 
     public static void main(String[] args) {
-        search("GCAGAGAG".toCharArray(), "GCATCGCAGAGAGTATACAGTACGGCAGAGAG".toCharArray());
+        search("JAE".toCharArray(), "JAEXJAE".toCharArray());
     }
 }

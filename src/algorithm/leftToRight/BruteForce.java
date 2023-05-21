@@ -15,6 +15,6 @@ public class BruteForce {
     }
 
     public static void main(String[] args) {
-        search("GCAGAGAG".toCharArray(), "GCATCGCAGAGAGTATACAGTACGGCAGAGAG".toCharArray());
+        search("JAE".toCharArray(), "JAEXJAE".toCharArray());
     }
 }
