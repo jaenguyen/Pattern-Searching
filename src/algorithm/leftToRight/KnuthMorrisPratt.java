@@ -4,7 +4,7 @@ public class KnuthMorrisPratt {
 
     // hàm tiền xử lý
     public static int[] preKMP(char[] x) {
-        int[] kmpNext = new int[x.length + 1];
+        int[] kmpNext = new int[x.length];
         int i = 1, len = 0;
         kmpNext[0] = 0; //kmpNext[0] luôn là 0
         while (i < x.length) {
